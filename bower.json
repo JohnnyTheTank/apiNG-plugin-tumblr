@@ -1,0 +1,31 @@
+{
+  "name": "apiNG-plugin-tumblr",
+  "homepage": "https://github.com/JohnnyTheTank/apiNG-plugin-tumblr",
+  "authors": [
+    "Jonathan Hornung <jonathan.hornung@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "description": "tumblr plugin for apiNG",
+  "main": "dist/apiNG-plugin-tumblr.min.js",
+  "moduleType": [],
+  "keywords": [
+    "aping",
+    "tumblr",
+    "angularjs",
+    "rest",
+    "api",
+    "json"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "apiNG": "*",
+    "angular-tumblr-api-factory": "*"
+  }
+}
