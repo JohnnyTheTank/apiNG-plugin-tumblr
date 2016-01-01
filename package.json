@@ -1,6 +1,6 @@
 {
   "name": "aping-plugin-tumblr",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "description": "tumblr plugin for apiNG",
   "main": "Gruntfile.js",
   "scripts": {
