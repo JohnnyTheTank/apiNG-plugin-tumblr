@@ -77,7 +77,6 @@ apingApp.config(['$provide', function ($provide) {
 ## III. USAGE
     a) Models
     b) Requests
-    c) Rate limit
 
 ### a) Models
 Supported apiNG models
