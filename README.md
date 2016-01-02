@@ -27,7 +27,7 @@ You can choose your preferred method of installation:
 ### b) Include files
 Include `apiNG-plugin-tumblr.min.js` in your apiNG application
 ```html
-<script src="bower_components/apiNG-plugin-tumblr/dist/apiNG-plugin-tumblr.min.js"></script>
+<script src="bower_components/apiNG-plugin-tumblr/dist/aping-plugin-tumblr.min.js"></script>
 ```
 
 ### c) Add dependencies
