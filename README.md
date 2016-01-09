@@ -5,7 +5,7 @@
 
 # Information
 * **Supported apiNG models: `social`, `image`, `video`**
-* Used promise library: [angular-tumblr-api-factory](https://github.com/JohnnyTheTank/angular-tumblr-api-factory) _(included in minified distribution file)_
+* Used promise library: [angular-tumblr-api-factory](https://github.com/JohnnyTheTank/angular-tumblr-api-factory) _(included in distribution files)_
 
 # Documentation
     I.   INSTALLATION
@@ -13,21 +13,32 @@
     III. USAGE
 
 ## I. INSTALLATION
-    a) Get files
-    b) Include files
+    a) Get file
+    b) Include file
     c) Add dependencies
     d) Add the plugin
 
-### a) Get files
+### a) Get file
 You can choose your preferred method of installation:
 
-* Via bower: `bower install apiNG-plugin-tumblr --save`
-* Download from github: [apiNG-plugin-tumblr.zip](https://github.com/JohnnyTheTank/apiNG-plugin-tumblr/zipball/master)
+Install via either [bower](http://bower.io/), [npm](https://www.npmjs.com/) or downloaded files:
 
-### b) Include files
+* `bower install apiNG-plugin-tumblr --save`
+* `npm install aping-plugin-tumblr --save`
+* download [apiNG-plugin-tumblr.zip](https://github.com/JohnnyTheTank/apiNG-plugin-tumblr/zipball/master)
+
+### b) Include file
 Include `aping-plugin-tumblr.min.js` in your apiNG application
+
 ```html
+<!-- when using bower -->
 <script src="bower_components/apiNG-plugin-tumblr/dist/aping-plugin-tumblr.min.js"></script>
+
+<!-- when using npm -->
+<script src="node_modules/aping-plugin-tumblr/dist/aping-plugin-tumblr.min.js"></script>
+
+<!-- when using downloaded files -->
+<script src="aping-plugin-tumblr.min.js"></script>
 ```
 
 ### c) Add dependencies

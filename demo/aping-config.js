@@ -2,7 +2,7 @@
 apingApp.config(['$provide', function ($provide) {
 
     $provide.constant("apingApiKeys", {
-        'tumblr': [
+        tumblr: [
             {'api_key':'<YOUR_TUMBLR_API_KEY>'},
         ],
     });

@@ -1,11 +1,5 @@
 "use strict";
 
-/**
- @author Jonathan Hornung (https://github.com/JohnnyTheTank)
- @url https://github.com/JohnnyTheTank/apiNG-plugin-tumblr
- @licence MIT
- */
-
 var jjtApingTumblr = angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
     .directive('apingTumblr', ['apingTumblrHelper', 'apingUtilityHelper', 'tumblrFactory', function (apingTumblrHelper, apingUtilityHelper, tumblrFactory) {
         return {
@@ -86,7 +80,7 @@ var jjtApingTumblr = angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
                         }
 
                         tumblrFactory.getPostsFromPage(requestObject)
-                            .success(function (_data) {
+                            .then(function (_data) {
                                 if (_data) {
                                     apingController.concatToResults(apingTumblrHelper.getObjectByJsonData(_data, helperObject));
                                 }

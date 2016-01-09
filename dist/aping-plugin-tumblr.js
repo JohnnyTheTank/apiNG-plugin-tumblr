@@ -1,4 +1,102 @@
+/**
+    @name: aping-plugin-tumblr 
+    @version: 0.7.0 (09-01-2016) 
+    @author: Jonathan Hornung 
+    @url: https://github.com/JohnnyTheTank/apiNG-plugin-tumblr#readme 
+    @license: MIT
+*/
 "use strict";
+
+var jjtApingTumblr = angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
+    .directive('apingTumblr', ['apingTumblrHelper', 'apingUtilityHelper', 'tumblrFactory', function (apingTumblrHelper, apingUtilityHelper, tumblrFactory) {
+        return {
+            require: '?aping',
+            restrict: 'A',
+            replace: 'false',
+            link: function (scope, element, attrs, apingController) {
+
+                var appSettings = apingController.getAppSettings();
+
+                var requests = apingUtilityHelper.parseJsonFromAttributes(attrs.apingTumblr, apingTumblrHelper.getThisPlattformString(), appSettings);
+
+                requests.forEach(function (request) {
+
+                    //create helperObject for helper function call
+                    var helperObject = {
+                        model: appSettings.model,
+                    };
+                    if(typeof appSettings.getNativeData !== "undefined") {
+                        helperObject.getNativeData = appSettings.getNativeData;
+                    } else {
+                        helperObject.getNativeData = false;
+                    }
+
+                    //create requestObject for api request call
+                    var requestObject = {
+                        api_key: apingUtilityHelper.getApiCredentials(apingTumblrHelper.getThisPlattformString(), "api_key"),
+                        filter:"text",
+
+                    };
+
+                    if(typeof request.items !== "undefined") {
+                        requestObject.limit = request.items;
+                    } else {
+                        requestObject.limit = appSettings.items;
+                    }
+
+                    if(requestObject.limit == 0) {
+                        return false;
+                    }
+
+                    // -1 is "no explicit limit". same for NaN value
+                    if(requestObject.limit < 0 || isNaN(requestObject.limit)) {
+                        requestObject.limit = undefined;
+                    }
+
+                    // the api has a limit of 20 items per request
+                    if(requestObject.limit > 20) {
+                        requestObject.limit = 20;
+                    }
+
+                    if(typeof request.tag !== "undefined") {
+                        requestObject.tag = request.tag;
+                    }
+
+                    if(requestObject.limit == 0) {
+                        return false;
+                    }
+
+                    if(request.page) {
+
+                        requestObject.page = request.page;
+
+                        switch(appSettings.model) {
+                            case "image":
+                                requestObject.type = "photo";
+                                break;
+
+                            case "video":
+                                requestObject.type = "video";
+                                break;
+
+                            case "social":
+                                break;
+
+                            default:
+                                return false;
+                        }
+
+                        tumblrFactory.getPostsFromPage(requestObject)
+                            .then(function (_data) {
+                                if (_data) {
+                                    apingController.concatToResults(apingTumblrHelper.getObjectByJsonData(_data, helperObject));
+                                }
+                            });
+                    }
+                });
+            }
+        }
+    }]);;"use strict";
 
 jjtApingTumblr.service('apingTumblrHelper', ['apingModels', 'apingTimeHelper', 'apingUtilityHelper', function (apingModels, apingTimeHelper, apingUtilityHelper) {
     this.getThisPlattformString = function () {
@@ -275,4 +373,123 @@ jjtApingTumblr.service('apingTumblrHelper', ['apingModels', 'apingTimeHelper', '
 
         return imageObject;
     };
-}]);
+}]);;"use strict";
+
+/**
+ @author Jonathan Hornung (https://github.com/JohnnyTheTank)
+ @url https://github.com/JohnnyTheTank/angular-tumblr-api-factory
+ @licence MIT
+ */
+
+angular.module("jtt_tumblr", [])
+    .factory('tumblrFactory', ['$http', 'tumblrSearchDataService', function ($http, tumblrSearchDataService) {
+
+        var tumblrFactory = {};
+
+        tumblrFactory.getPostsFromPage = function (_params) {
+            var tumblrSearchData = tumblrSearchDataService.getNew("postsFromPage", _params);
+
+            return $http.jsonp(
+                tumblrSearchData.url,
+                {
+                    method: 'GET',
+                    params: tumblrSearchData.object,
+                }
+            );
+        };
+
+        tumblrFactory.getInfoFromPage = function (_params) {
+            var tumblrSearchData = tumblrSearchDataService.getNew("infoFromPage", _params);
+
+            return $http.jsonp(
+                tumblrSearchData.url,
+                {
+                    method: 'GET',
+                    params: tumblrSearchData.object,
+                }
+            );
+        };
+
+        tumblrFactory.getAvatarFromPage = function (_params) {
+            var tumblrSearchData = tumblrSearchDataService.getNew("avatarFromPage", _params);
+
+            return $http.jsonp(
+                tumblrSearchData.url,
+                {
+                    method: 'GET',
+                    params: tumblrSearchData.object,
+                }
+            );
+        };
+
+        return tumblrFactory;
+    }])
+    .service('tumblrSearchDataService', function () {
+        this.getApiBaseUrl = function (_params) {
+            var version;
+
+            if(_params && typeof _params.version !== "undefined") {
+                version = _params.version+"/";
+            } else {
+                version = "v2/";
+            }
+            return 'https://api.tumblr.com/'+version+'blog/';
+        };
+
+        this.fillDataInObjectByList = function(_object, _params, _list) {
+
+            angular.forEach(_list, function (value, key) {
+                if(typeof _params[value] !== "undefined") {
+                    _object.object[value] = _params[value];
+                }
+            });
+
+            return _object;
+        };
+
+        this.getNew = function (_type, _params) {
+
+            var tumblrSearchData = {
+                object: {
+                    api_key:_params.api_key || undefined,
+                    callback: "JSON_CALLBACK"
+                },
+                url: "",
+            };
+
+            if (typeof _params.limit !== "undefined") {
+                tumblrSearchData.object.limit = _params.limit;
+            }
+
+            switch (_type) {
+                case "postsFromPage":
+                    tumblrSearchData = this.fillDataInObjectByList(tumblrSearchData, _params, [
+                        'type', 'id', 'tag', 'offset', 'reblog_info', 'notes_info', 'filter'
+                    ]);
+
+                    tumblrSearchData.url = this.getApiBaseUrl()+_params.page+".tumblr.com/posts";
+                    break;
+
+                case "infoFromPage":
+                    tumblrSearchData.object.limit = undefined;
+
+                    tumblrSearchData.url = this.getApiBaseUrl()+_params.page+".tumblr.com/info";
+                    break;
+
+                case "avatarFromPage":
+                    tumblrSearchData.object.limit = undefined;
+
+                    var size = "";
+
+                    if (typeof _params.size !== "undefined") {
+                        size = "/"+_params.size;
+                    }
+
+                    tumblrSearchData.url = this.getApiBaseUrl()+_params.page+".tumblr.com/avatar"+size;
+                    break;
+
+            }
+
+            return tumblrSearchData;
+        };
+    });
