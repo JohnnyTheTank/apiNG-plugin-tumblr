@@ -10,7 +10,7 @@ var jjtApingTumblr = angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
 
                 var appSettings = apingController.getAppSettings();
 
-                var requests = apingUtilityHelper.parseJsonFromAttributes(attrs.apingTumblr, apingTumblrHelper.getThisPlattformString(), appSettings);
+                var requests = apingUtilityHelper.parseJsonFromAttributes(attrs.apingTumblr, apingTumblrHelper.getThisPlatformString(), appSettings);
 
                 requests.forEach(function (request) {
 
@@ -26,7 +26,7 @@ var jjtApingTumblr = angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
 
                     //create requestObject for api request call
                     var requestObject = {
-                        api_key: apingUtilityHelper.getApiCredentials(apingTumblrHelper.getThisPlattformString(), "api_key"),
+                        api_key: apingUtilityHelper.getApiCredentials(apingTumblrHelper.getThisPlatformString(), "api_key"),
                         filter:"text",
 
                     };
@@ -51,12 +51,12 @@ var jjtApingTumblr = angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
                         requestObject.limit = 20;
                     }
 
-                    if(typeof request.tag !== "undefined") {
-                        requestObject.tag = request.tag;
+                    if (requestObject.limit === 0 || requestObject.limit === '0') {
+                        return false;
                     }
 
-                    if(requestObject.limit == 0) {
-                        return false;
+                    if(typeof request.tag !== "undefined") {
+                        requestObject.tag = request.tag;
                     }
 
                     if(request.page) {

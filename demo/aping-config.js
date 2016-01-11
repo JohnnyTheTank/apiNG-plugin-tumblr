@@ -1,21 +1,13 @@
 "use strict";
 apingApp.config(['$provide', function ($provide) {
-
-    $provide.constant("apingApiKeys", {
-        tumblr: [
-            {'api_key':'<YOUR_TUMBLR_API_KEY>'},
-        ],
+    $provide.value("apingDefaultSettings", {
+        apingApiKeys : {
+            //...
+            tumblr: [
+                //{'api_key':'<YOUR_TUMBLR_API_KEY>'},
+                {'api_key':'lINWJaOl0lu3ajBn5tdqJgs8IFisHu5GJ8hBYzR41f4BHEl9E6'},
+            ],
+            //...
+        }
     });
-
-    $provide.constant("apingDefaultSettings", {
-        templateUrl : "aping_design_blanko.html",
-        items : 20, //items per request
-        maxItems: 100, //max items per aping
-        orderBy : "timestamp",
-        orderReverse : "true",
-        model: "social",
-        getNativeData: false,
-        removeDoubles: false,
-    });
-
 }]);

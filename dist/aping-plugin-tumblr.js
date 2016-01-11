@@ -1,8 +1,8 @@
 /**
     @name: aping-plugin-tumblr 
-    @version: 0.7.0 (09-01-2016) 
-    @author: Jonathan Hornung 
-    @url: https://github.com/JohnnyTheTank/apiNG-plugin-tumblr#readme 
+    @version: 0.7.6 (11-01-2016) 
+    @author: Jonathan Hornung <jonathan.hornung@gmail.com> 
+    @url: https://github.com/JohnnyTheTank/apiNG-plugin-tumblr 
     @license: MIT
 */
 "use strict";
@@ -17,7 +17,7 @@ var jjtApingTumblr = angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
 
                 var appSettings = apingController.getAppSettings();
 
-                var requests = apingUtilityHelper.parseJsonFromAttributes(attrs.apingTumblr, apingTumblrHelper.getThisPlattformString(), appSettings);
+                var requests = apingUtilityHelper.parseJsonFromAttributes(attrs.apingTumblr, apingTumblrHelper.getThisPlatformString(), appSettings);
 
                 requests.forEach(function (request) {
 
@@ -33,7 +33,7 @@ var jjtApingTumblr = angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
 
                     //create requestObject for api request call
                     var requestObject = {
-                        api_key: apingUtilityHelper.getApiCredentials(apingTumblrHelper.getThisPlattformString(), "api_key"),
+                        api_key: apingUtilityHelper.getApiCredentials(apingTumblrHelper.getThisPlatformString(), "api_key"),
                         filter:"text",
 
                     };
@@ -44,7 +44,7 @@ var jjtApingTumblr = angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
                         requestObject.limit = appSettings.items;
                     }
 
-                    if(requestObject.limit == 0) {
+                    if (requestObject.limit === 0 || requestObject.limit === '0') {
                         return false;
                     }
 
@@ -60,10 +60,6 @@ var jjtApingTumblr = angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
 
                     if(typeof request.tag !== "undefined") {
                         requestObject.tag = request.tag;
-                    }
-
-                    if(requestObject.limit == 0) {
-                        return false;
                     }
 
                     if(request.page) {
@@ -99,7 +95,7 @@ var jjtApingTumblr = angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
     }]);;"use strict";
 
 jjtApingTumblr.service('apingTumblrHelper', ['apingModels', 'apingTimeHelper', 'apingUtilityHelper', function (apingModels, apingTimeHelper, apingUtilityHelper) {
-    this.getThisPlattformString = function () {
+    this.getThisPlatformString = function () {
         return "tumblr";
     };
 
@@ -243,7 +239,7 @@ jjtApingTumblr.service('apingTumblrHelper', ['apingModels', 'apingTimeHelper', '
     };
 
     this.getSocialItemByJsonData = function (_item) {
-        var socialObject = apingModels.getNew("social", this.getThisPlattformString());
+        var socialObject = apingModels.getNew("social", this.getThisPlatformString());
 
         //fill _item in socialObject
         $.extend(true, socialObject, {
@@ -319,7 +315,7 @@ jjtApingTumblr.service('apingTumblrHelper', ['apingModels', 'apingTimeHelper', '
     };
 
     this.getVideoItemByJsonData = function (_item) {
-        var videoObject = apingModels.getNew("video", this.getThisPlattformString());
+        var videoObject = apingModels.getNew("video", this.getThisPlatformString());
 
         //fill _item in videoObject
         $.extend(true, videoObject, {
@@ -349,7 +345,7 @@ jjtApingTumblr.service('apingTumblrHelper', ['apingModels', 'apingTimeHelper', '
     };
 
     this.getImageItemByJsonData = function (_item) {
-        var imageObject = apingModels.getNew("image", this.getThisPlattformString());
+        var imageObject = apingModels.getNew("image", this.getThisPlatformString());
 
         //fill _item in imageObject
         $.extend(true, imageObject, {

@@ -1,7 +1,7 @@
 "use strict";
 
 jjtApingTumblr.service('apingTumblrHelper', ['apingModels', 'apingTimeHelper', 'apingUtilityHelper', function (apingModels, apingTimeHelper, apingUtilityHelper) {
-    this.getThisPlattformString = function () {
+    this.getThisPlatformString = function () {
         return "tumblr";
     };
 
@@ -145,7 +145,7 @@ jjtApingTumblr.service('apingTumblrHelper', ['apingModels', 'apingTimeHelper', '
     };
 
     this.getSocialItemByJsonData = function (_item) {
-        var socialObject = apingModels.getNew("social", this.getThisPlattformString());
+        var socialObject = apingModels.getNew("social", this.getThisPlatformString());
 
         //fill _item in socialObject
         $.extend(true, socialObject, {
@@ -221,7 +221,7 @@ jjtApingTumblr.service('apingTumblrHelper', ['apingModels', 'apingTimeHelper', '
     };
 
     this.getVideoItemByJsonData = function (_item) {
-        var videoObject = apingModels.getNew("video", this.getThisPlattformString());
+        var videoObject = apingModels.getNew("video", this.getThisPlatformString());
 
         //fill _item in videoObject
         $.extend(true, videoObject, {
@@ -251,7 +251,7 @@ jjtApingTumblr.service('apingTumblrHelper', ['apingModels', 'apingTimeHelper', '
     };
 
     this.getImageItemByJsonData = function (_item) {
-        var imageObject = apingModels.getNew("image", this.getThisPlattformString());
+        var imageObject = apingModels.getNew("image", this.getThisPlatformString());
 
         //fill _item in imageObject
         $.extend(true, imageObject, {
