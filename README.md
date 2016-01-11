@@ -6,7 +6,7 @@
 # Information
 * **Supported apiNG models: `social`, `image`, `video`**
 * This plugin supports the [`get-native-data` parameter](https://aping.readme.io/docs/configuration#parameters)
-* This plugin needs an [access token](#2-access-token) :warning:
+* This plugin needs an [api key](#2-api-key) :warning:
 * Used promise library: [angular-tumblr-api-factory](https://github.com/JohnnyTheTank/angular-tumblr-api-factory) _(included in distribution files)_
 
 # Documentation
