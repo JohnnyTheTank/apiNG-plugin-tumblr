@@ -1,11 +1,14 @@
 [logo]: http://aping.io/logo/320/aping-plugin.png "apiNG Plugin"
 ![apiNG][logo]
 
+[![npm version](https://badge.fury.io/js/aping-plugin-tumblr.png)](https://badge.fury.io/js/aping-plugin-tumblr)
+[![Bower version](https://badge.fury.io/bo/apiNG-plugin-tumblr.png)](https://badge.fury.io/bo/apiNG-plugin-tumblr)
+
 **_apiNG-plugin-tumblr_** is a [Tumblr API](https://www.tumblr.com/docs/en/api/v2) plugin for [**apiNG**](https://github.com/JohnnyTheTank/apiNG).
 
 # Information
 * **Supported apiNG models: `social`, `image`, `video`**
-* This plugin supports the [`get-native-data` parameter](https://aping.readme.io/docs/configuration#parameters)
+* This plugin supports the [`get-native-data` parameter](https://aping.readme.io/docs/advanced#parameters)
 * This plugin needs an [api key](#2-api-key) :warning:
 * Used promise library: [angular-tumblr-api-factory](https://github.com/JohnnyTheTank/angular-tumblr-api-factory) _(included in distribution files)_
 
@@ -14,7 +17,7 @@
 1. [INSTALLATION](#1-installation)
     1. Get file
     2. Include file
-    3. Add dependencies
+    3. Add dependency
     4. Add plugin
 2. [API KEY](#2-api-key)
     1. Generate your `api_key`
@@ -48,7 +51,7 @@ Include `aping-plugin-tumblr.min.js` in your apiNG application
 <script src="aping-plugin-tumblr.min.js"></script>
 ```
 
-### III. Add dependencies
+### III. Add dependency
 Add the module `jtt_aping_tumblr` as a dependency to your app module:
 ```js
 var app = angular.module('app', ['jtt_aping', 'jtt_aping_tumblr']);
