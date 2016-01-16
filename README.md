@@ -31,10 +31,11 @@
 ### I. Get file
 You can choose your preferred method of installation:
 
-Install via either [bower](http://bower.io/), [npm](https://www.npmjs.com/) or downloaded files:
+Install via either [bower](http://bower.io/), [npm](https://www.npmjs.com/), CDN (jsDelivr) or downloaded files:
 
 * `bower install apiNG-plugin-tumblr --save`
 * `npm install aping-plugin-tumblr --save`
+* use [CDN file](https://www.jsdelivr.com/projects/aping.plugin-tumblr)
 * download [apiNG-plugin-tumblr.zip](https://github.com/JohnnyTheTank/apiNG-plugin-tumblr/zipball/master)
 
 ### II. Include file
@@ -46,6 +47,9 @@ Include `aping-plugin-tumblr.min.js` in your apiNG application
 
 <!-- when using npm -->
 <script src="node_modules/aping-plugin-tumblr/dist/aping-plugin-tumblr.min.js"></script>
+
+<!-- when using cdn file -->
+<script src="//cdn.jsdelivr.net/aping.plugin-tumblr/latest/aping-plugin-tumblr.min.js"></script>
 
 <!-- when using downloaded files -->
 <script src="aping-plugin-tumblr.min.js"></script>
