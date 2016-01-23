@@ -83,7 +83,6 @@ Create and open `js/apiNG/aping-config.js` in your application folder. It should
 apingApp.config(['$provide', function ($provide) {
     $provide.value("apingDefaultSettings", {
         apingApiKeys : {
-            //...
             'tumblr': [
                 {'api_key':'<YOUR_TUMBLR_API_KEY>'},
             ]
