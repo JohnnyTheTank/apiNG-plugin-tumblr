@@ -1,6 +1,6 @@
 "use strict";
 
-var jjtApingTumblr = angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
+angular.module("jtt_aping_tumblr", ['jtt_tumblr'])
     .directive('apingTumblr', ['apingTumblrHelper', 'apingUtilityHelper', 'tumblrFactory', function (apingTumblrHelper, apingUtilityHelper, tumblrFactory) {
         return {
             require: '?aping',

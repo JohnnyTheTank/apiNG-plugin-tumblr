@@ -58,7 +58,7 @@ Include `aping-plugin-tumblr.min.js` in your apiNG application
 ### III. Add dependency
 Add the module `jtt_aping_tumblr` as a dependency to your app module:
 ```js
-var app = angular.module('app', ['jtt_aping', 'jtt_aping_tumblr']);
+angular.module('app', ['jtt_aping', 'jtt_aping_tumblr']);
 ```
 
 ### IV. Add the plugin
@@ -80,7 +80,7 @@ _coming soon ..._
 ### II. Insert your `api_key` into `aping-config.js`
 Create and open `js/apiNG/aping-config.js` in your application folder. It should be look like this snippet:
 ```js
-apingApp.config(['$provide', function ($provide) {
+angular.module('jtt_aping').config(['$provide', function ($provide) {
     $provide.value("apingDefaultSettings", {
         apingApiKeys : {
             'tumblr': [
