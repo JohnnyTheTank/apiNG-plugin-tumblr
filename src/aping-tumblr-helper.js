@@ -149,7 +149,7 @@ angular.module("jtt_aping_tumblr")
             var socialObject = apingModels.getNew("social", this.getThisPlatformString());
 
             //fill _item in socialObject
-            $.extend(true, socialObject, {
+            angular.extend(socialObject, {
                 blog_name: _item.blog_name || undefined,
                 blog_link: _item.blog_name ? this.getThisBlogLink(_item.blog_name) : undefined,
                 type: _item.type || undefined,
@@ -164,9 +164,11 @@ angular.module("jtt_aping_tumblr")
                     if (_item.photos && _item.photos[0] && _item.photos[0].alt_sizes && _item.photos[0].alt_sizes.length > 0) {
                         socialObject.source = _item.photos;
 
-                        var tempImageArray = this.getImagesFromImageArray(_item.photos[0].alt_sizes);
-                        if (typeof tempImageArray.img_url !== "undefined") {
-                            socialObject.img_url = tempImageArray.img_url;
+                        if (_item.photos && _item.photos[0] && _item.photos[0].alt_sizes && _item.photos[0].alt_sizes.length > 0) {
+                            socialObject.source = _item.photos;
+
+                            var tempImageArray = this.getImagesFromImageArray(_item.photos[0].alt_sizes);
+                            angular.extend(socialObject, tempImageArray);
                         }
                     }
                     break;
@@ -179,17 +181,24 @@ angular.module("jtt_aping_tumblr")
                         socialObject.text = _item.title || undefined;
                     }
                     if (_item.photos && _item.photos[0] && _item.photos[0].alt_sizes && _item.photos[0].alt_sizes.length > 0) {
-                        var tempImageArray = this.getImagesFromImageArray(_item.photos[0].alt_sizes);
-                        if (typeof tempImageArray.img_url !== "undefined") {
-                            socialObject.img_url = tempImageArray.img_url;
+                        socialObject.source = _item.photos;
+
+                        if (_item.photos && _item.photos[0] && _item.photos[0].alt_sizes && _item.photos[0].alt_sizes.length > 0) {
+                            socialObject.source = _item.photos;
+
+                            var tempImageArray = this.getImagesFromImageArray(_item.photos[0].alt_sizes);
+                            angular.extend(socialObject, tempImageArray);
                         }
                     }
                     break;
 
                 case "video":
+                    console.log(_item);
                     socialObject.text = _item.caption || undefined;
                     if (_item.thumbnail_url) {
                         socialObject.img_url = _item.thumbnail_url;
+                        socialObject.thumb_url = _item.thumbnail_url;
+                        socialObject.native_url = _item.thumbnail_url;
                     }
                     if (_item.player) {
                         socialObject.source = _item.player;
@@ -225,7 +234,7 @@ angular.module("jtt_aping_tumblr")
             var videoObject = apingModels.getNew("video", this.getThisPlatformString());
 
             //fill _item in videoObject
-            $.extend(true, videoObject, {
+            angular.extend(videoObject, {
                 blog_name: _item.blog_name || undefined,
                 blog_link: _item.blog_name ? this.getThisBlogLink(_item.blog_name) : undefined,
                 type: _item.type || undefined,
@@ -234,6 +243,8 @@ angular.module("jtt_aping_tumblr")
                 intern_id: _item.id || undefined,
                 text: _item.caption || undefined,
                 img_url: _item.thumbnail_url || undefined,
+                thumb_url: _item.thumbnail_url || undefined,
+                native_url: _item.thumbnail_url || undefined,
             });
 
             angular.forEach(_item.player, function (value, key) {
@@ -242,9 +253,7 @@ angular.module("jtt_aping_tumblr")
                     videoObject.markup = value.embed_code;
                     videoObject.width = value.width;
                 }
-
             });
-
 
             videoObject.date_time = new Date(videoObject.timestamp);
 
@@ -255,7 +264,7 @@ angular.module("jtt_aping_tumblr")
             var imageObject = apingModels.getNew("image", this.getThisPlatformString());
 
             //fill _item in imageObject
-            $.extend(true, imageObject, {
+            angular.extend(imageObject, {
                 blog_name: _item.blog_name || undefined,
                 blog_link: _item.blog_name ? this.getThisBlogLink(_item.blog_name) : undefined,
                 type: _item.type || undefined,
@@ -269,7 +278,7 @@ angular.module("jtt_aping_tumblr")
                 imageObject.source = _item.photos;
 
                 var tempImageArray = this.getImagesFromImageArray(_item.photos[0].alt_sizes);
-                $.extend(true, imageObject, tempImageArray);
+                angular.extend(imageObject, tempImageArray);
             }
 
             imageObject.date_time = new Date(imageObject.timestamp);

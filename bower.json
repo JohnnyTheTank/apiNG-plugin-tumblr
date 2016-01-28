@@ -4,7 +4,7 @@
   "authors": [
     "Jonathan Hornung <jonathan.hornung@gmail.com>"
   ],
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "Tumblr plugin for apiNG",
   "main": "dist/aping-plugin-tumblr.min.js",
   "moduleType": [],
