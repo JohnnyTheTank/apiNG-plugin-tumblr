@@ -193,7 +193,6 @@ angular.module("jtt_aping_tumblr")
                     break;
 
                 case "video":
-                    console.log(_item);
                     socialObject.text = _item.caption || undefined;
                     if (_item.thumbnail_url) {
                         socialObject.img_url = _item.thumbnail_url;
