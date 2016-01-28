@@ -1,6 +1,6 @@
 {
   "name": "aping-plugin-tumblr",
-  "version": "0.7.7",
+  "version": "0.7.8",
   "description": "Tumblr plugin for apiNG",
   "main": "dist/aping-plugin-tumblr.min.js",
   "scripts": {
