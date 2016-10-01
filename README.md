@@ -2,8 +2,8 @@
 ![apiNG][logo]
 
 [![Join the chat at https://gitter.im/JohnnyTheTank/apiNG](https://img.shields.io/badge/GITTER-join%20chat-green.svg)](https://gitter.im/JohnnyTheTank/apiNG?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![npm version](https://badge.fury.io/js/aping-plugin-tumblr.png)](https://badge.fury.io/js/aping-plugin-tumblr)
-[![Bower version](https://badge.fury.io/bo/apiNG-plugin-tumblr.png)](https://badge.fury.io/bo/apiNG-plugin-tumblr)
+[![npm version](https://badge.fury.io/js/aping-plugin-tumblr.svg)](https://badge.fury.io/js/aping-plugin-tumblr)
+[![Bower version](https://badge.fury.io/bo/apiNG-plugin-tumblr.svg)](https://badge.fury.io/bo/apiNG-plugin-tumblr)
 
 **_apiNG-plugin-tumblr_** is a [Tumblr API](https://www.tumblr.com/docs/en/api/v2) plugin for [**apiNG**](https://github.com/JohnnyTheTank/apiNG).
 
