@@ -50,7 +50,7 @@ Include `aping-plugin-tumblr.min.js` in your apiNG application
 <script src="node_modules/aping-plugin-tumblr/dist/aping-plugin-tumblr.min.js"></script>
 
 <!-- when using cdn file -->
-<script src="//cdn.jsdelivr.net/aping.plugin-tumblr/latest/aping-plugin-tumblr.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aping-plugin-tumblr@latest/dist/aping-plugin-tumblr.min.js"></script>
 
 <!-- when using downloaded files -->
 <script src="aping-plugin-tumblr.min.js"></script>
